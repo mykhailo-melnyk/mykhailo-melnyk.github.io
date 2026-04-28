@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mykhailo Melnyk — Senior Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif&display=swap" />
+<style>
+  :root {
+    --bg: #f3efe7;
+    --bg-2: #ebe6dc;
+    --ink: #16160f;
+    --ink-2: #3a3a31;
+    --muted: #7a7669;
+    --line: #cfc8b8;
+    --accent: #b04a2f;
+    --accent-soft: #e7d7c9;
+    --serif: "Fraunces", "Instrument Serif", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --pad: clamp(20px, 4vw, 56px);
+    --maxw: 1240px;
+    --row-gap: clamp(80px, 10vw, 160px);
+  }
+  html, body { background: var(--bg); color: var(--ink); }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  * { box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent); color: var(--bg); }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+  .serif { font-family: var(--serif); font-weight: 500; letter-spacing: -0.01em; }
+  .grid-lines {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(to right, rgba(22,22,15,0.04) 1px, transparent 1px);
+    background-size: calc((min(100vw, var(--maxw)) - 2 * var(--pad)) / 12) 100%;
+    background-position: 50% 0;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2 * var(--pad));
+  }
+  #app { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+  <div class="grid-lines"></div>
+  <div id="app"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="data.jsx"></script>
+  <script type="text/babel" src="sections.jsx"></script>
+  <script type="text/babel" src="projects.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
