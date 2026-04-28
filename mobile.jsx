@@ -92,12 +92,46 @@ function MobileHeader({ data }) {
 }
 
 function MobileHero({ data }) {
+  const [imageError, setImageError] = useMState(false);
+  
   return (
     <section style={{ padding: "32px 22px 56px" }}>
       <div className="mono" style={{ marginBottom: 28, display: "flex", flexDirection: "column", gap: 6 }}>
         <span>{data.location}</span>
         <span style={{ color: "var(--accent)" }}>● {data.available}</span>
       </div>
+      
+      {/* Avatar */}
+      <div style={{ marginBottom: 28 }}>
+        {!imageError ? (
+          <img 
+            src="assets/avatar.jpg" 
+            alt="Mykhailo Melnyk"
+            onError={() => setImageError(true)}
+            style={{
+              width: 120,
+              height: 120,
+              borderRadius: "50%",
+              border: "2px solid var(--line)",
+              objectFit: "cover",
+              objectPosition: "center top",
+            }}
+          />
+        ) : (
+          <div style={{
+            width: 120,
+            height: 120,
+            borderRadius: "50%",
+            border: "2px solid var(--line)",
+            background: "var(--bg-2)",
+            display: "grid",
+            placeItems: "center",
+          }}>
+            <span className="serif" style={{ fontSize: 48, color: "var(--muted)" }}>M</span>
+          </div>
+        )}
+      </div>
+      
       <h1 className="serif" style={{
         margin: 0, fontSize: "clamp(56px, 16vw, 84px)", lineHeight: 0.92,
         letterSpacing: "-0.035em", fontWeight: 500,

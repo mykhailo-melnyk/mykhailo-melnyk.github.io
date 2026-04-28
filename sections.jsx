@@ -242,7 +242,33 @@ function About({ data }) {
 }
 
 function Portrait() {
-  // Tasteful placeholder portrait — striped panel with monospace label
+  // Avatar image with fallback to placeholder
+  const [imageError, setImageError] = React.useState(false);
+  
+  if (!imageError) {
+    return (
+      <div style={{
+        aspectRatio: "4/5", width: "100%",
+        position: "relative", overflow: "hidden",
+        background: "var(--bg-2)",
+        border: "1px solid var(--line)",
+      }}>
+        <img 
+          src="assets/avatar.jpg" 
+          alt="Mykhailo Melnyk"
+          onError={() => setImageError(true)}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center top",
+          }}
+        />
+      </div>
+    );
+  }
+  
+  // Fallback placeholder if image not found
   return (
     <div style={{
       aspectRatio: "4/5", width: "100%",

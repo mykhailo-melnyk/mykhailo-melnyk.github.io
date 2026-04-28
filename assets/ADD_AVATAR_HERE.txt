@@ -1,0 +1,13 @@
+IMPORTANT: Add your avatar image here!
+
+1. Save your professional photo as "avatar.jpg" in this assets folder
+2. The image should be:
+   - At least 400x400px for good quality
+   - Square or portrait orientation works best
+   - JPEG format recommended for smaller file size
+
+The portfolio is already configured to display this image:
+- Desktop: Shows in the About section (4:5 portrait ratio)
+- Mobile: Shows as a circular avatar in the Hero section
+
+If no image is found, a placeholder will be shown instead.
