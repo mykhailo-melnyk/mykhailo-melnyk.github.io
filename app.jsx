@@ -6,7 +6,8 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "fontPair": "fraunces-inter",
   "density": "comfortable",
   "accentHue": 24,
-  "showGrid": false
+  "showGrid": false,
+  "forceMobile": false
 }/*EDITMODE-END*/;
 
 const THEMES = {
@@ -51,9 +52,21 @@ function applyTweaks(t) {
   document.querySelector(".grid-lines").style.opacity = t.showGrid ? 1 : 0;
 }
 
+function useViewport() {
+  const [w, setW] = React.useState(typeof window !== "undefined" ? window.innerWidth : 1200);
+  React.useEffect(() => {
+    const onResize = () => setW(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return w;
+}
+
 function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const data = window.PORTFOLIO;
+  const w = useViewport();
+  const isMobile = tweaks.forceMobile || w < 820;
 
   useAppEffect(() => { applyTweaks(tweaks); }, [tweaks]);
 
@@ -71,13 +84,19 @@ function App() {
 
   return (
     <>
-      <Nav onJump={onJump} />
-      <Hero data={data} />
-      <About data={data} />
-      <Skills data={data} />
-      <Work data={data} />
-      <Experience data={data} />
-      <Contact data={data} />
+      {isMobile ? (
+        <MobileApp data={data} />
+      ) : (
+        <>
+          <Nav onJump={onJump} />
+          <Hero data={data} />
+          <About data={data} />
+          <Skills data={data} />
+          <Work data={data} />
+          <Experience data={data} />
+          <Contact data={data} />
+        </>
+      )}
 
       <TweaksPanel title="Tweaks">
         <TweakSection label="Theme">
@@ -119,6 +138,9 @@ function App() {
           <TweakToggle label="Show grid columns"
             value={tweaks.showGrid}
             onChange={(v) => setTweak("showGrid", v)} />
+          <TweakToggle label="Force mobile view"
+            value={tweaks.forceMobile}
+            onChange={(v) => setTweak("forceMobile", v)} />
         </TweakSection>
       </TweaksPanel>
     </>
